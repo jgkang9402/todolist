@@ -70,7 +70,7 @@ function render() {
 
 function toggleComplete(id) {
     console.log("id:", id);
-    for (let i = 0; i < taskList.length; i++) {
+    for (let i=0;i<taskList.length;i++) {
         if (taskList[i].id == id) {
             taskList[i].isComplete = !taskList[i].isComplete;
             break;
@@ -81,7 +81,7 @@ function toggleComplete(id) {
 }
 
 function deleteTask(id) {
-    for (let i = 0; i < taskList.length; i++) {
+    for (let i=0;i<taskList.length;i++) {
         if (taskList[i].id == id) {
             taskList.splice(i, 1)
             break;
@@ -94,10 +94,16 @@ function filter(event) {
     mode = event.target.id;
     filterList = [];
 
+    document.getElementById("under-line").style.width =
+        event.target.offsetWidth + "px";
+    document.getElementById("under-line").style.top =
+        event.target.offsetTop + event.target.offsetHeight + "px";
+    document.getElementById("under-line").style.left =
+        event.target.offsetLeft + "px";
     if (mode == "all") {
         render()
     } else if (mode == "ongoing") {
-        for (let i = 0; i < taskList.length; i++) {
+        for (let i=0;i<taskList.length;i++) {
             if (taskList[i].isComplete == false) {
                 filterList.push(taskList[i]);
             }
